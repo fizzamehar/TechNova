@@ -1,0 +1,112 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #f7f8fa;
+  color: #0f172a;
+}
+
+::selection {
+  background: rgba(13, 148, 136, 0.18);
+  color: #0f172a;
+}
+
+/* Thin scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #f7f8fa;
+}
+::-webkit-scrollbar-thumb {
+  background: #d8dee9;
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #b9c2d0;
+}
+
+/* Signature: circuit trace divider — a hairline with a node,
+   used between sections to echo PCB trace lines on a spec-sheet driven store. */
+.trace-divider {
+  position: relative;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(13, 148, 136, 0.45) 8%,
+    rgba(213, 220, 232, 1) 50%,
+    transparent
+  );
+}
+.trace-divider::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 6px;
+  height: 6px;
+  transform: translate(-50%, -50%);
+  background: #0d9488;
+  border-radius: 1px;
+  box-shadow: 0 0 6px rgba(13, 148, 136, 0.5);
+}
+
+/* Nav link underline trace */
+.nav-trace {
+  position: relative;
+}
+.nav-trace::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 100%;
+  bottom: -4px;
+  height: 2px;
+  background: #0d9488;
+  transition: right 0.25s ease;
+}
+.nav-trace:hover::after,
+.nav-trace[data-active="true"]::after {
+  right: 0;
+}
+
+/* Live/stock indicator dot */
+.led-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: #0d9488;
+  box-shadow: 0 0 5px rgba(13, 148, 136, 0.6);
+}
+.led-dot.off {
+  background: #b9c2d0;
+  box-shadow: none;
+}
+
+.circuit-corner {
+  background-image: linear-gradient(#e5e9f0 1px, transparent 1px),
+    linear-gradient(90deg, #e5e9f0 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
